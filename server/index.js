@@ -10,11 +10,7 @@ const app = express();
 dotenv.config()
 app.use(express.json({limit:'30mb',extended: true}))
 app.use(express.urlencoded({limit:"30mb", extended: true}))
-/*app.use(cors({
-    origin: "https://project-null-frontend.vercel.app/",
-    methods: ["POST","GET","PATCH"],
-    credentials: true
-}));*/
+app.use(cors());
 
 app.get('/',(req,res) => {
     res.send("This is a stack overflow clone API")
