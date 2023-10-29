@@ -10,7 +10,11 @@ const app = express();
 dotenv.config()
 app.use(express.json({limit:'30mb',extended: true}))
 app.use(express.urlencoded({limit:"30mb", extended: true}))
-app.use(cors());
+app.use(cors({
+    origin: "https://project-null-frontend.vercel.app/",
+    methods: ["POST","GET","PATCH"],
+    credentials: true
+}));
 
 app.get('/',(req,res) => {
     res.send("This is a stack overflow clone API")
@@ -22,7 +26,7 @@ app.use('/answer',answerRoutes)
 
 const PORT =process.env.PORT || 5000 
 
-const CONNECTION_URL = "mongodb+srv://Pradeep:aspd1234@cluster0.10dup2i.mongodb.net/?retryWrites=true&w=majority&appName=AtlasApp"
+const CONNECTION_URL = process.env.CONNECTION_URL
 
 mongoose.connect(CONNECTION_URL,{useNewUrlParser: true, useUnifiedTopology :true})
 .then(()=>app.listen(PORT, () => {console.log(`server running on port on ${PORT}`)}))
