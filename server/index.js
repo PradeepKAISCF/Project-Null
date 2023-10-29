@@ -10,14 +10,9 @@ const app = express();
 dotenv.config()
 app.use(express.json({limit:'30mb',extended: true}))
 app.use(express.urlencoded({limit:"30mb", extended: true}))
-const cors=require("cors");
-const corsOptions ={
-   origin:'*', 
-   credentials:true,            //access-control-allow-credentials:true
-   optionSuccessStatus:200,
-}
 
-app.use(cors(corsOptions)) // Use this after the variable declaration
+
+app.use(cors())
 
 app.get('/',(req,res) => {
     res.send("This is a stack overflow clone API")
