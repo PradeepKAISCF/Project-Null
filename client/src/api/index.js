@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API = axios.create({baseURL: 'https://project-null-api2.vercel.app'})
+const API = axios.create({baseURL: 'https://naveen-back.onrender.com/'})
 
 API.interceptors.request.use((req) => {
     if(localStorage.getItem('Profile')){
