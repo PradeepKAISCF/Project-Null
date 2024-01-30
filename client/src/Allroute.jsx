@@ -8,6 +8,8 @@ import DisplayQuestion from './Pages/Quetions/DisplayQuestion'
 import Tags from './Pages/Tags/Tags'
 import Users from './Pages/Users/Users'
 import UserProfile from './Pages/UserProfile/UserProfile'
+import Chatbot from './Pages/Chatbot/Chatbot'
+import Subscribe from './Pages/Subscribe/Subscribe'
 
 const Allroute = () => {
   return (
@@ -20,6 +22,8 @@ const Allroute = () => {
         <Route path='Tags' element={<Tags/>}/>
         <Route path='Users' element={<Users/>}/>
         <Route path='Users/:id' element={<UserProfile/>}/>
+        <Route path='chatbot' element={<Chatbot/>}/>
+        <Route path='subscribe' element={<Subscribe/>}/>
     </Routes>
   )
 }

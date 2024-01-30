@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { fetchAllQuestion } from './actions/question';
 import { useDispatch } from 'react-redux';
 import { fetchAllUsers } from './actions/users';
+import Whether from './components/Whether'; 
 
 function App() {
   
@@ -19,6 +20,7 @@ function App() {
   return (
     <Router>
       <Navbar />
+      <Whether/>
       <Allroutes />
     </Router>
   );
