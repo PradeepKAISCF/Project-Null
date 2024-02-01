@@ -6,7 +6,7 @@ import LeftSidebar from '../../components/LeftSidebar/LeftSidebar'
 import '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
 import { MainContainer, ChatContainer, MessageList, Message, MessageInput, TypingIndicator } from '@chatscope/chat-ui-kit-react';
 
-const API_KEY = "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";
+const API_KEY = "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";
 // "Explain things like you would to a 10 year old learning how to code."
 const systemMessage = { //  Explain things like you're talking to a software professional with 5 years of experience.
   "role": "system", "content": "Explain things like you're talking to a software professional with 2 years of experience."
