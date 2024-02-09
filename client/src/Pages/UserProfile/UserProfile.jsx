@@ -17,7 +17,7 @@ const UserProfile = () => {
     const currentProfile = users.filter((user) => user._id === id)[0]
     const currentUser = useSelector((state) => state.currentUserReducer)
     const [Switch, setSwitch] = useState(false)
-    
+    console.log(currentProfile)
     return (
         <div className='home-container-1'>
             <LeftSidebar/>
@@ -31,6 +31,15 @@ const UserProfile = () => {
                             <div className="user-name">
                                 <h1>{currentProfile?.name}</h1>
                                 <p><FontAwesomeIcon icon={faBirthdayCake}/>Joined {moment(currentProfile?.joinedOn).fromNow()}</p>
+                                <p>
+                  {currentProfile.subscrption=== 0 ?(
+                    <>Free Tier</>
+                  ): currentProfile.subscrption === 1?(
+                    <>Silver tier</>
+                  ):
+                  <>Golden Tier</>
+                  }
+                </p>
                             </div>
                         </div>
                             {
