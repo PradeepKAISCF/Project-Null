@@ -27,3 +27,17 @@ export const updateProfile = async (req,res) => {
         res.status(405).json({message:error.message})
     }
 }
+
+export const subscription = async (req,res) => {
+    const {id: _id} =req.params
+    const {value} = req.body
+    try {
+        const updatedProfile = await User.findByIdAndUpdate(_id,{$set:{'subscription':value}},{new:true})
+        if(value === 0){await User.findByIdAndUpdate(_id,{$set:{'noOfQuetions':1}})}
+        if(value === 1){await User.findByIdAndUpdate(_id,{$set:{'noOfQuetions':5}})}
+        if(value === 2){await User.findByIdAndUpdate(_id,{$set:{'noOfQuetions':1000}})}
+        res.status(200).json(updatedProfile)
+    } catch (error) {
+        res.status(405).json({message:error.message})
+    }
+}
