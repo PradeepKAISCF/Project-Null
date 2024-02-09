@@ -1,12 +1,29 @@
 import Questions from '../models/Questions.js'
+import User from '../models/auth.js'
 import mongoose from 'mongoose'
 
 export const AskQuestion = async (req,res) => {
     const postQuestionData = req.body;
     const postQuestion = new Questions(postQuestionData);
+    console.log(postQuestionData)
     try{
-        await postQuestion.save();
-        res.status(200).json("Posted a question sucessfully")
+        const data = await User.findById(postQuestionData.userId)
+        const sub = data.subscription
+        //console.log(sub)
+        if(Math.abs(data.quetiontimer - Date.now)>24*60*60*1000){
+            await User.findByIdAndUpdate(postQuestionData.userId,{$set:{'quetiontimer':Date.now}})
+            if(sub === 0){await User.findByIdAndUpdate(postQuestionData.userId,{$set:{'noOfQuetions':1}})}
+            if(sub === 1){await User.findByIdAndUpdate(postQuestionData.userId,{$set:{'noOfQuetions':5}})}
+            if(sub === 2){await User.findByIdAndUpdate(postQuestionData.userId,{$set:{'noOfQuetions':1000}})}
+        }
+        if(data.noOfQuetions>0){
+            await User.findByIdAndUpdate(postQuestionData.userId,{$inc:{noOfQuetions:-1}})
+            await postQuestion.save();
+            const point = await User.findByIdAndUpdate(postQuestionData.userId,{$inc:{point:10}},{new:true})
+            res.status(200).json(point)
+        }else{
+            res.status(200).json('0')
+        }
     }catch(error){
         console.log(error)
         res.status(409).json("Couldn't post  new questionm");
