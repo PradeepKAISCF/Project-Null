@@ -36,7 +36,7 @@ export const subscription = async (req,res) => {
         if(value === 0){await User.findByIdAndUpdate(_id,{$set:{'noOfQuetions':1}})}
         if(value === 1){await User.findByIdAndUpdate(_id,{$set:{'noOfQuetions':5}})}
         if(value === 2){await User.findByIdAndUpdate(_id,{$set:{'noOfQuetions':1000}})}
-        res.status(200).json({result: updatedProfile})
+        res.status(200).json(updatedProfile)
     } catch (error) {
         res.status(405).json({message:error.message})
     }
